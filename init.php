@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-// Function to get user input
-function ask($question) {
+function ask($question): string
+{
     echo $question . "\n> ";
     return trim(fgets(STDIN));
 }
@@ -12,7 +12,6 @@ if (file_exists('composer.json')) {
     exit;
 }
 
-// Ask user for input
 $packageName = ask("Enter the package name (format: package-name):");
 $packageDescription = ask("Enter the package description:");
 $authorLogin = ask("Enter the author login (format: username):");
@@ -114,7 +113,7 @@ function createComposerJson(string $packageName, string $packageDescription, str
             "php" => ">=8.3"
         ],
         "require-dev" => [
-            "orchestra/testbench" => "^8.0"
+            "orchestra/testbench" => "^10.0"
         ]
     ];
 
