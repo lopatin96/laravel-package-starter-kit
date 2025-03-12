@@ -274,14 +274,14 @@ function createControllers(string $packageName, string $authorLogin): void
         "namespace $author\\$package\\Http\\Controllers;\n\n" .
         "use Illuminate\\View\\View;\n" .
         "use Illuminate\\Http\\RedirectResponse;\n\n" .
-        "class $className extends Controller\n" .
+        "class {$className}Controller extends Controller\n" .
         "{\n" .
         "    public function __invoke(): View\n" .
         "    {\n\n" .
         "    }\n" .
         "}\n";
 
-    file_put_contents("src/Http/Controllers/$className.php", $controllerContent);
+    file_put_contents("src/Http/Controllers/{$className}Controller.php", $controllerContent);
 }
 
 function createLanguageFiles(): void
