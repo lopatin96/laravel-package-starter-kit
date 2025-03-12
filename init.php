@@ -97,7 +97,7 @@ function createComposerJson(string $packageName, string $packageDescription, str
         "extra" => [
             "laravel" => [
                 "providers" => [
-                    "$author\\$package\\ServiceProvider"
+                    "$author\\$package\\{$package}ServiceProvider"
                 ]
             ]
         ],
