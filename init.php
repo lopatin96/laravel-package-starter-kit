@@ -40,7 +40,7 @@ try {
     );
 
     if ($createConfig) {
-        createConfig();
+        createConfig($packageName);
     }
 
     if ($createMigration) {
@@ -192,13 +192,13 @@ function createProvider(
     file_put_contents("src/{$className}ServiceProvider.php", $providerContent);
 }
 
-function createConfig(): void
+function createConfig(string $packageName): void
 {
     if (! is_dir("config") && ! mkdir("config", 0777, true) && ! is_dir("config")) {
         throw new RuntimeException(sprintf('Directory "%s" was not created', "config"));
     }
 
-    $configFileName = "config/config.php";
+    $configFileName = "config/$packageName.php";
     $configContent = "<?php\n\nreturn [\n\n];\n";
 
     file_put_contents($configFileName, $configContent);
