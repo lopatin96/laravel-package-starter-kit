@@ -147,7 +147,8 @@ function createProvider(
     if ($createConfig) {
         $providerContent .= "        \$this->mergeConfigFrom(\n" .
             "            __DIR__.'/../config/$packageName.php', '$packageName'\n" .
-            "        );\n\n";
+            "        );\n" .
+            "    };\n\n";
     }
 
     $providerContent .= "    public function boot()\n" .
@@ -184,6 +185,9 @@ function createProvider(
             "            __DIR__.'/../resources/views' => resource_path('views/vendor/$packageName'),\n" .
             "        ], '$packageName-views');\n\n";
     }
+
+    $providerContent .= "    }\n" .
+            "}\n";
 
     file_put_contents("src/{$className}ServiceProvider.php", $providerContent);
 }
@@ -224,7 +228,7 @@ function createMigration(): void
         "        Schema::table('XXX', static function (Blueprint \$table) {\n\n" .
         "        });\n" .
         "    }\n" .
-        "};";
+        "};\n";
     file_put_contents($migrationFileName, $migrationContent);
 }
 
@@ -262,7 +266,7 @@ function createControllers(string $packageName, string $authorLogin): void
         "class Controller extends BaseController\n" .
         "{\n" .
         "    use AuthorizesRequests, ValidatesRequests;\n" .
-        "}";
+        "}\n";
 
     file_put_contents("src/Http/Controllers/Controller.php", $controllerContent);
 
@@ -275,7 +279,7 @@ function createControllers(string $packageName, string $authorLogin): void
         "    public function __invoke(): View\n" .
         "    {\n\n" .
         "    }\n" .
-        "}";
+        "}\n";
 
     file_put_contents("src/Http/Controllers/$className.php", $controllerContent);
 }
