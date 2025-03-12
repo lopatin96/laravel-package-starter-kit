@@ -110,7 +110,7 @@ function createComposerJson(string $packageName, string $packageDescription, str
             ]
         ],
         "require" => [
-            "php" => ">=8.3"
+            "php" => ">=8.4"
         ],
         "require-dev" => [
             "orchestra/testbench" => "^10.0"
