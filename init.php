@@ -156,12 +156,12 @@ function createProvider(
     if ($createConfig) {
         $providerContent .= "        \$this->publishes([\n" .
             "            __DIR__.'/../config/$packageName.php' => config_path('$packageName.php'),\n" .
-            "        ]);\n\n";
+            "        ], '$packageName-config');\n\n";
     }
 
     if ($createMigration) {
-        $providerContent .= "        \$this->publishes([\n" .
-            "            __DIR__.'/../database/migrations' => database_path('/migrations'),\n" .
+        $providerContent .= "        \$this->publishesMigrations([\n" .
+            "            __DIR__.'/../database/migrations' => database_path('migrations'),\n" .
             "        ], '$packageName-migrations');\n\n";
     }
 
@@ -174,7 +174,7 @@ function createProvider(
 
         $providerContent .= "        \$this->publishes([\n" .
             "            __DIR__.'/../lang' => \$this->app->langPath('vendor/$packageName'),\n" .
-            "        ]);\n\n";
+            "        ], '$packageName-lang');\n\n";
     }
 
     if ($createViews) {
@@ -182,7 +182,7 @@ function createProvider(
 
         $providerContent .= "        \$this->publishes([\n" .
             "            __DIR__.'/../resources/views' => resource_path('views/vendor/$packageName'),\n" .
-            "        ]);\n\n";
+            "        ], '$packageName-views');\n\n";
     }
 
     file_put_contents("src/{$className}ServiceProvider.php", $providerContent);
