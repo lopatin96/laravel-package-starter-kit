@@ -161,6 +161,8 @@ function createProvider(
     }
 
     if ($createMigration) {
+        $providerContent .= "        \$this->loadMigrationsFrom(__DIR__.'/../database/migrations');\n\n";
+        
         $providerContent .= "        \$this->publishesMigrations([\n" .
             "            __DIR__.'/../database/migrations' => database_path('migrations'),\n" .
             "        ], '$packageName-migrations');\n\n";
