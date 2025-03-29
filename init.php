@@ -147,9 +147,10 @@ function createProvider(
     if ($createConfig) {
         $providerContent .= "        \$this->mergeConfigFrom(\n" .
             "            __DIR__.'/../config/$packageName.php', '$packageName'\n" .
-            "        );\n" .
-            "    };\n\n";
+            "        );\n";
     }
+
+    $providerContent .= "    }\n";
 
     $providerContent .= "    public function boot()\n" .
     "    {\n";
@@ -316,3 +317,5 @@ function createViews(): void
 }
 
 echo "Laravel package created successfully.\n";
+
+unlink(__FILE__);
